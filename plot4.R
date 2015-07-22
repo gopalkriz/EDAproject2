@@ -94,11 +94,12 @@ NEIcoalYearType <- aggregate(Emissions ~ year + type, NEIcoalcomb , sum)
 #plots to default graphic device / monitor
 plot4 <-  ggplot(NEIcoalYearType , aes(year, Emissions/10^6, color = type))+
   geom_line()+
-  stat_summary(fun.y = "sum", fun.ymin = "sum", fun.ymax = "sum", colour = "magenta", geom="line")+
+  stat_summary(fun.y = "sum", fun.ymin = "sum", fun.ymax = "sum", colour = "black", aes(shape="total"), geom="line")+
+  geom_line(aes(size="total", shape = NA))+
   xlab("Year")+
   ylab("Emission in million Tons")+
   ggtitle("Total Annual Emission of PM2.5 from Coal Combustion in USA")
-plot4 #plot on scree for visual
+plot4 #plot on screen for visual
 #Open graphic device to png; create the plot; close the connection
 png('plot4.png')
 plot4
@@ -132,7 +133,8 @@ NEIcoalYearType2 <- aggregate(Emissions ~ year + type, NEIcoal2 , sum)
 ```
 plot4a <-  ggplot(NEIcoalYearType, aes(year, Emissions/10^6, color = type))+
   geom_line()+
-  stat_summary(fun.y = "sum", fun.ymin = "sum", fun.ymax = "sum", colour = "magenta", geom="line")+
+  stat_summary(fun.y = "sum", fun.ymin = "sum", fun.ymax = "sum", colour = "black", aes(shape="total"), geom="line")+
+  geom_line(aes(size="total", shape = NA))+
   xlab("Year")+
   ylab("Emission in million Tons")+
   ggtitle("Total Annual Emission of PM2.5 from Coal Combustion in USA")
